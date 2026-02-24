@@ -47,4 +47,29 @@ input[type=number]::-webkit-outer-spin-button {
      backdrop-filter: blur(11.3px);
      -webkit-backdrop-filter: blur(11.3px);
      border: 1px solid rgba(255, 255, 255, 0.17);
+     transition: 0.3s ease;
+}
+
+.glass:hover{
+     background: rgba(255, 255, 255, 0.178);
+     box-shadow: none;
+}
+
+.slick-slider button::before{
+     color: black;
+}
+
+.selected-service{
+     animation-name: 'view';
+     animation-duration: 500ms;
+     animation-timing-function: linear;
+     animation-fill-mode: both;
+}
+
+@keyframes view {
+     from{
+          opacity: 0;
+     }to{
+          opacity: 1;
+     }
 }
