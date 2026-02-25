@@ -66,6 +66,25 @@ input[type=number]::-webkit-outer-spin-button {
      animation-fill-mode: both;
 }
 
+.card-animation{
+  content: "";
+  /* override the gradient here */
+  background-image: conic-gradient(
+    white 20deg,
+    transparent 100deg
+  );
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(-360deg);
+  }
+}
+
 @keyframes view {
      from{
           opacity: 0;

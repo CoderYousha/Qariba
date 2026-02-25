@@ -1,6 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
 import Background from '../../images/backgrounds/background2.jpg';
 import { useState } from "react";
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 function SoftwareDevelopment() {
     const [selectedService, setSelectedService] = useState(1);
@@ -23,6 +27,7 @@ function SoftwareDevelopment() {
                 <Typography variant="h6" className="text-white text-center !mt-5" fontWeight={800}>مع قريبة البرمجة ليست كودا فقط... بل استراتيجية تقنية تقربك من أهدافك.</Typography>
             </Box>
 
+            {/* Services */}
             <Box className="w-full min-h-screen px-5 py-5" sx={{ backgroundColor: '#F0D7A1' }}>
                 <Typography variant="h4" fontWeight={800} className="text-center !my-10">خدمات تصميم وتطوير البرمجيات الاحترافية</Typography>
                 <Typography variant="body1" className="text-center !mt-5">البرمجيات اليوم ليست مجرد أدوات تشغيل، بل هي المحرك الحقيقي لنمو الأعمال وتطورها.
@@ -147,6 +152,96 @@ function SoftwareDevelopment() {
                                                 </ul>
                                             </Box>
                 }
+            </Box>
+
+            {/* Description */}
+            <Box className="w-full min-h-screen flow-root" sx={{ backgroundColor: '#F0D7A1' }}>
+                <Box className="w-full h-screen flow-root rounded-t-3xl" sx={{ backgroundColor: '#E39127' }}>
+                    <Typography variant="h4" fontWeight={800} className="text-center !my-10">من فكرة إلى منتج برمجي جاهز للنمو</Typography>
+                    <Box className="px-5 mt-10 flex justify-between py-20">
+                        <Box className="relative overflow-hidden p-1">
+                            <Box className="w-[340px] relative py-2 !z-20" sx={{ backgroundColor: '#E39127' }}>
+                                <Box className="text-center">
+                                    <AccountTreeIcon className="text-white !text-6xl" />
+                                    <Typography variant="body1" className="!mt-5 !text-xl">في قريبة نتبع منهجية تطوير مدروسة تضمن تحويل فكرتك إلى منتج رقمي ناجح بكفاءة واحترافية.</Typography>
+                                </Box>
+                            </Box>
+                            <Box className="card-animation absolute -top-1/2 -translate-y-1/2 !z-10 w-[350px] h-[400px]"></Box>
+                        </Box>
+                        <Box className="relative overflow-hidden p-1">
+                            <Box className="w-[340px] relative py-2 !z-20" sx={{ backgroundColor: '#E39127' }}>
+                                <Box className="text-center">
+                                    <AnalyticsIcon className="text-white !text-6xl" />
+                                    <Typography variant="body1" className="!mt-5 !text-xl">نبدأ بتحليل دقيق للرؤية والمتطلبات، نصمم تجربة استخدام واضحة، نطوّر النظام بأحدث التقنيات، ثم نختبره بدقة قبل الإطلاق.</Typography>
+                                </Box>
+                            </Box>
+                            <Box className="card-animation absolute -top-1/2 -translate-y-1/2 !z-10 w-[350px] h-[400px]"></Box>
+                        </Box>
+                        <Box className="relative overflow-hidden p-1">
+                            <Box className="w-[340px] relative py-2 !z-20" sx={{ backgroundColor: '#E39127' }}>
+                                <Box className="text-center">
+                                    <HandshakeIcon className="text-white !text-6xl" />
+                                    <Typography variant="body1" className="!mt-5 !text-xl">لا نتوقف عند التسليم، بل نرافقك بالدعم والتطوير المستمر لضمان استقرار منتجك ونموه في السوق.</Typography>
+                                </Box>
+                            </Box>
+                            <Box className="card-animation absolute -top-1/2 -translate-y-1/2 !z-10 w-[350px] h-[400px]"></Box>
+                        </Box>
+                    </Box>
+                    <Typography variant="h5" fontWeight={800} className="text-center !my-10">مع قريبة فكرتك تأخذ شكلا حقيقيا وتتحول إلى قيمة رقمية مستدامة</Typography>
+                </Box>
+            </Box>
+
+            {/* FAQ */}
+            <Box className="w-full h-screen px-5 flow-root" sx={{ backgroundColor: '#8D3C02' }} dir="rtl">
+                <Typography variant="h4" fontWeight={800} className="text-center !my-10 text-white">الأسئلة الشائعة</Typography>
+                <Accordion className="mb-10">
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1-content"
+                        id="panel1-header"
+                    >
+                        <Typography component="span" className="!text-xl">هل تقدم قريبة استشارة تقنية قبل بدء المشروع؟</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className="text-lg">
+                        نعم، نبدأ كل مشروع بجلسة تحليل وفهم عميق للفكرة لتحديد أفضل حل تقني يحقق أهدافك بأعلى كفاءة.
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion className="mb-10">
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1-content"
+                        id="panel1-header"
+                    >
+                        <Typography component="span" className="!text-xl">كيف يتم تحديد تكلفة تطوير النظام أو التطبيق؟</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className="text-lg">
+                        تعتمد التكلفة على نطاق المشروع، عدد الميزات، مستوى التعقيد، والتكاملات المطلوبة. بعد تحليل المتطلبات نقدم عرضًا واضحًا ومفصلًا بدون مفاجآت.
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion className="mb-10">
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1-content"
+                        id="panel1-header"
+                    >
+                        <Typography component="span" className="!text-xl">كم يستغرق تطوير منتج برمجي كامل؟</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className="text-lg">
+                        مدة التنفيذ تختلف حسب حجم المشروع، لكن بعد مرحلة التحليل نقدم جدولًا زمنيًا واضحًا بمراحل تسليم محددة.
+                    </AccordionDetails>
+                </Accordion>
+                <Accordion className="mb-10">
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1-content"
+                        id="panel1-header"
+                    >
+                        <Typography component="span" className="!text-xl">هل يمكن تطوير نظام مخصص حسب احتياجات شركتي؟</Typography>
+                    </AccordionSummary>
+                    <AccordionDetails className="text-lg">
+                        بالتأكيد. نحن متخصصون في تطوير أنظمة مخصصة بالكامل تناسب طبيعة عملك وعملياتك الداخلية
+                    </AccordionDetails>
+                </Accordion>
             </Box>
         </Box>
     );

@@ -1,4 +1,5 @@
 import Home from "../pages/Home";
+import ElectronicMarketingAndSocialMedia from "../pages/services/ElectronicMarketingAndSocialMedia";
 import SoftwareDevelopment from "../pages/services/SoftwareDevelopment";
 
 function QaribaRoutes() {
@@ -10,6 +11,10 @@ function QaribaRoutes() {
           {
                'path': '/software-development',
                'element': <SoftwareDevelopment />
+          },
+          {
+               'path': '/electronic-marketing-social-media',
+               'element': <ElectronicMarketingAndSocialMedia />
           }
      ];
 }
