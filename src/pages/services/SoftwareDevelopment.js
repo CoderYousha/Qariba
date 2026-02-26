@@ -5,6 +5,7 @@ import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Footer from "../../components/Footer";
 
 function SoftwareDevelopment() {
     const [selectedService, setSelectedService] = useState(1);
@@ -16,8 +17,8 @@ function SoftwareDevelopment() {
             {/* Starter */}
             <Box className="w-full h-screen pt-32">
                 <Typography variant="h6" className="text-white text-center">شركة قريبة لتطوير البرمجيات</Typography>
-                <Typography variant="h2" fontWeight={800} className="text-white text-center !my-5">من فكرة إلى نظام متكامل يصنع فرقا في عملك</Typography>
-                <Typography variant="h2" fontWeight={800} className="text-white text-center">ونقربك من النجاح</Typography>
+                <Typography variant="h2" fontWeight={800} className="text-white text-center !my-5 max-sm:!text-2xl">من فكرة إلى نظام متكامل يصنع فرقا في عملك</Typography>
+                <Typography variant="h2" fontWeight={800} className="text-white text-center max-sm:!text-2xl">ونقربك من النجاح</Typography>
                 <Typography variant="body1" className="text-white text-center !mt-5">فكرة قوية بدون نظام احترافي تبقى مجرد تصور.
                     في قريبة نحول أفكارك إلى حلول برمجية متكاملة تُبنى على أسس تقنية قوية وتعمل بكفاءة عالية.
                 </Typography>
@@ -29,12 +30,12 @@ function SoftwareDevelopment() {
 
             {/* Services */}
             <Box className="w-full min-h-screen px-5 py-5" sx={{ backgroundColor: '#F0D7A1' }}>
-                <Typography variant="h4" fontWeight={800} className="text-center !my-10">خدمات تصميم وتطوير البرمجيات الاحترافية</Typography>
+                <Typography variant="h4" fontWeight={800} className="text-center !my-10 max-sm:!text-2xl">خدمات تصميم وتطوير البرمجيات الاحترافية</Typography>
                 <Typography variant="body1" className="text-center !mt-5">البرمجيات اليوم ليست مجرد أدوات تشغيل، بل هي المحرك الحقيقي لنمو الأعمال وتطورها.
                     في قريبة للحلول البرمجية نحول أفكارك إلى أنظمة ذكية، وتحدياتك إلى حلول تقنية عملية تدعم استقرارك وتسرّع توسعك.
                 </Typography>
                 <Typography variant="body1" className="text-center !mt-5">نقدم حلولاً برمجية متكاملة تجمع بين قوة البرمجة، دقة التحليل، وتجربة المستخدم الذكية، لنمنحك نظامًا يعمل بكفاءة، يتطور معك، ويخدم أهدافك على المدى الطويل.</Typography>
-                <Box className="mt-20 flex justify-between">
+                <Box className="mt-20 flex justify-between max-sm:overflow-x-scroll max-sm:w-full max-sm:hidden">
                     <Box className="px-2 py-3 border bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 1 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 1 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(1)}>جمع المتطلبات وتحليلها</Box>
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 2 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 2 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(2)}>تصميم واجهات المستخدم</Box>
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 3 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 3 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(3)}>الدومين واستضافة موقع</Box>
@@ -43,6 +44,16 @@ function SoftwareDevelopment() {
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 6 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 6 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(6)}>تصميم موتطوير متاجر إلكترونية</Box>
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 7 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 7 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(7)}>تطوير مواقع ويب</Box>
                 </Box>
+                <select onChange={(e) => setSelectedService(e.target.value)} className="hidden max-sm:block w-full py-3 px-2 rounded-xl mt-10 outline-none">
+                    <option disabled>الخدمات</option>
+                    <option value="1">جمع المتطلبات وتحليلها</option>
+                    <option value="2">تصميم واجهات المستخدم</option>
+                    <option value="3">الدومين واستضافة موقع</option>
+                    <option value="4">تصميم مواقع احترافية عبر WordPress</option>
+                    <option value="5">تطوير تطبيقات الموبايل</option>
+                    <option value="6">تصميم موتطوير متاجر إلكترونية</option>
+                    <option value="7">تطوير مواقع ويب</option>
+                </select>
                 {
                     selectedService === 1 ?
                         <Box key={selectedService} className="mt-10 selected-service">
@@ -156,20 +167,20 @@ function SoftwareDevelopment() {
 
             {/* Description */}
             <Box className="w-full min-h-screen flow-root" sx={{ backgroundColor: '#F0D7A1' }}>
-                <Box className="w-full h-screen flow-root rounded-t-3xl" sx={{ backgroundColor: '#E39127' }}>
-                    <Typography variant="h4" fontWeight={800} className="text-center !my-10">من فكرة إلى منتج برمجي جاهز للنمو</Typography>
-                    <Box className="px-5 mt-10 flex justify-between py-20">
-                        <Box className="relative overflow-hidden p-1">
-                            <Box className="w-[340px] relative py-2 !z-20" sx={{ backgroundColor: '#E39127' }}>
+                <Box className="w-full h-screen flow-root rounded-t-3xl max-sm:h-fit" sx={{ backgroundColor: '#E39127' }}>
+                    <Typography variant="h4" fontWeight={800} className="text-center !my-10 max-sm:!text-2xl">من فكرة إلى منتج برمجي جاهز للنمو</Typography>
+                    <Box className="px-5 mt-10 flex justify-between py-20 max-sm:block">
+                        <Box className="relative overflow-hidden p-1 max-sm:w-fit max-sm:mx-auto">
+                            <Box className="w-[340px] relative py-2 !z-20 max-sm:w-[365px] max-sm:mx-auto" sx={{ backgroundColor: '#E39127' }}>
                                 <Box className="text-center">
                                     <AccountTreeIcon className="text-white !text-6xl" />
                                     <Typography variant="body1" className="!mt-5 !text-xl">في قريبة نتبع منهجية تطوير مدروسة تضمن تحويل فكرتك إلى منتج رقمي ناجح بكفاءة واحترافية.</Typography>
                                 </Box>
                             </Box>
-                            <Box className="card-animation absolute -top-1/2 -translate-y-1/2 !z-10 w-[350px] h-[400px]"></Box>
+                            <Box className="card-animation absolute -top-1/2 -translate-y-1/2 !z-10 w-[350px] h-[400px] max-sm:w-11/12"></Box>
                         </Box>
-                        <Box className="relative overflow-hidden p-1">
-                            <Box className="w-[340px] relative py-2 !z-20" sx={{ backgroundColor: '#E39127' }}>
+                        <Box className="relative overflow-hidden p-1 max-sm:mt-5 max-sm:w-fit max-sm:mx-auto">
+                            <Box className="w-[340px] relative py-2 !z-20 max-sm:w-[365px]" sx={{ backgroundColor: '#E39127' }}>
                                 <Box className="text-center">
                                     <AnalyticsIcon className="text-white !text-6xl" />
                                     <Typography variant="body1" className="!mt-5 !text-xl">نبدأ بتحليل دقيق للرؤية والمتطلبات، نصمم تجربة استخدام واضحة، نطوّر النظام بأحدث التقنيات، ثم نختبره بدقة قبل الإطلاق.</Typography>
@@ -177,8 +188,8 @@ function SoftwareDevelopment() {
                             </Box>
                             <Box className="card-animation absolute -top-1/2 -translate-y-1/2 !z-10 w-[350px] h-[400px]"></Box>
                         </Box>
-                        <Box className="relative overflow-hidden p-1">
-                            <Box className="w-[340px] relative py-2 !z-20" sx={{ backgroundColor: '#E39127' }}>
+                        <Box className="relative overflow-hidden p-1 max-sm:mt-5 max-sm:w-fit max-sm:mx-auto">
+                            <Box className="w-[340px] relative py-2 !z-20 max-sm:w-[365px]" sx={{ backgroundColor: '#E39127' }}>
                                 <Box className="text-center">
                                     <HandshakeIcon className="text-white !text-6xl" />
                                     <Typography variant="body1" className="!mt-5 !text-xl">لا نتوقف عند التسليم، بل نرافقك بالدعم والتطوير المستمر لضمان استقرار منتجك ونموه في السوق.</Typography>
@@ -242,6 +253,9 @@ function SoftwareDevelopment() {
                         بالتأكيد. نحن متخصصون في تطوير أنظمة مخصصة بالكامل تناسب طبيعة عملك وعملياتك الداخلية
                     </AccordionDetails>
                 </Accordion>
+            </Box>
+            <Box className="" dir="ltr" sx={{ backgroundColor: '#8D3C02' }}>
+                <Footer />
             </Box>
         </Box>
     );

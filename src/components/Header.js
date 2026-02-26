@@ -11,6 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Logo from '../images/logo/logo.png';
+import { useNavigate } from 'react-router-dom';
 
 const pages = [
      {
@@ -39,8 +40,10 @@ const pages = [
      },
 ];
 
+
 function Header() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -102,7 +105,7 @@ function Header() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page, index) => (
-                <MenuItem key={index} onClick={handleCloseNavMenu}>
+                <MenuItem key={index} onClick={() => {navigate(page.link); handleCloseNavMenu();}}>
                   <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
               ))}
@@ -131,7 +134,7 @@ function Header() {
             {pages.map((page, index) => (
               <Button
                 key={index}
-                onClick={handleCloseNavMenu}
+                onClick={() => {navigate(page.link); handleCloseNavMenu();}}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.name}

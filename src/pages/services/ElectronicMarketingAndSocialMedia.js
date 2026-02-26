@@ -4,6 +4,8 @@ import { useState } from "react";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useTableStyles } from "../../hooks/UseTableStyles";
 import CheckIcon from '@mui/icons-material/Check';
+import CircleIcon from '@mui/icons-material/Circle';
+import Footer from "../../components/Footer";
 
 function ElectronicMarketingAndSocialMedia() {
     const [selectedService, setSelectedService] = useState(1);
@@ -14,22 +16,22 @@ function ElectronicMarketingAndSocialMedia() {
     }
 
     const rows = [
-        createData('إدارة صفحات التواصل الاجتماعي', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
+        createData('إدارة صفحات التواصل الاجتماعي', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
         createData('بوستات', 10, 20, 30),
         createData('ستوري', 10, 20, 30),
         createData('تصوير فيديوهات تسويقية', 3, 6, 12),
-        createData('صبايا لتقديم المحتوى', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('خطة تسويقية', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('مونتاج احترافي', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('إدارة الحملات الممولة', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('دراسة المنافسين', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('كتابة المحتوى', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('النشر والمتابعة الخاصة بالمحتوى', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('الرد على التعليقات والرسائل', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('زيادة الإعجابات والتعليقات', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('تكبير صفحات', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('تفعيل الرد التلقائي', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
-        createData('إعداد الهايلايتس والبايو', <CheckIcon color="success"/>, <CheckIcon color="success"/>, <CheckIcon color="success"/>),
+        createData('صبايا لتقديم المحتوى', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('خطة تسويقية', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('مونتاج احترافي', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('إدارة الحملات الممولة', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('دراسة المنافسين', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('كتابة المحتوى', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('النشر والمتابعة الخاصة بالمحتوى', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('الرد على التعليقات والرسائل', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('زيادة الإعجابات والتعليقات', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('تكبير صفحات', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('تفعيل الرد التلقائي', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
+        createData('إعداد الهايلايتس والبايو', <CircleIcon color="warning" />, <CircleIcon color="warning" />, <CircleIcon color="warning" />),
         createData('تزويد متابعين', 1000, 1000, 1000),
         createData('المدة', 'شهر', 'شهر', 'شهر'),
         createData('', '495$', '695$', '895$'),
@@ -41,7 +43,7 @@ function ElectronicMarketingAndSocialMedia() {
             {/* Starter */}
             <Box className="w-full h-screen pt-32">
                 <Typography variant="h6" className="text-white text-center">شركة قريبة للتسويق الإلكتروني والسوشال ميديا</Typography>
-                <Typography variant="h2" className="text-white text-center !my-5">نصنع حضورك الرقمي ونحوله إلى نتائج</Typography>
+                <Typography variant="h2" className="text-white text-center !my-5 max-sm:!text-2xl">نصنع حضورك الرقمي ونحوله إلى نتائج</Typography>
                 <Typography variant="body1" className="text-white text-center !mt-5">ندير حساباتك باحتراف، نصنع محتوى يجذب جمهورك، ونطلق حملات مدروسة تزيد التفاعل والمبيعات.</Typography>
                 <Typography variant="body1" className="text-white text-center !mt-5">استراتيجية ذكية، أرقام واضحة، ونمو حقيقي لعلامتك التجارية.</Typography>
                 <Typography variant="h6" className="text-white text-center !mt-5" fontWeight={800}>ابدأ رحلتك الرقمية اليوم</Typography>
@@ -49,7 +51,7 @@ function ElectronicMarketingAndSocialMedia() {
 
             {/* Services */}
             <Box className="w-full min-h-screen px-5 py-5" sx={{ backgroundColor: '#F0D7A1' }}>
-                <Typography variant="h4" fontWeight={800} className="text-center !my-10">خدمات تسويق إلكتروني احترافية تحقق نموا حقيقيا لعلامتك</Typography>
+                <Typography variant="h4" fontWeight={800} className="text-center !my-10 max-sm:!text-2xl">خدمات تسويق إلكتروني احترافية تحقق نموا حقيقيا لعلامتك</Typography>
                 <Typography variant="body1" className="text-center !mt-5">
                     تقدم شركة قريبة حلول تسويق إلكتروني متكاملة يقودها فريق متخصص يجمع بين الإبداع والتحليل الرقمي.
                 </Typography>
@@ -57,7 +59,7 @@ function ElectronicMarketingAndSocialMedia() {
                     نبدأ بدراسة السوق وجمهورك المستهدف بدقة، ثم نصمم استراتيجيات مخصصة تعزز حضورك الرقمي، وتزيد التفاعل، وتحول الاهتمام إلى نتائج قابلة للقياس
                 </Typography>
                 <Typography variant="body1" className="text-center !mt-5">في قريبة، لا نعدك بالانتشار فقط بل نبني لك تأثيرا يصنع الفرق</Typography>
-                <Box className="mt-20 flex justify-between">
+                <Box className="mt-20 flex justify-between max-sm:!hidden">
                     <Box className="px-2 py-3 border bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 1 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 1 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(1)}>خطط تسويقية فعالة</Box>
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 2 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 2 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(2)}>إعلانات السوشال ميديا</Box>
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 3 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 3 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(3)}>إدارة صفحات السوشال ميديا</Box>
@@ -66,6 +68,17 @@ function ElectronicMarketingAndSocialMedia() {
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 6 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 6 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(6)}>تزويد متابعين حقيقيين</Box>
                     <Box className="px-2 py-3 bg-opacity-50 cursor-pointer border-black rounded-3xl" sx={{ backgroundColor: selectedService === 7 ? 'rgb(255 255 255 / var(--tw-bg-opacity, 1))' : 'none', border: selectedService === 7 ? '1px solid black' : 'none' }} onClick={() => setSelectedService(7)}>التسويق عبر الرسائل النصية</Box>
                 </Box>
+
+                <select onChange={(e) => setSelectedService(e.target.value)} className="hidden max-sm:block w-full py-3 px-2 rounded-xl mt-10 outline-none">
+                    <option disabled>الخدمات</option>
+                    <option value="1">خطط تسويقية فعالة</option>
+                    <option value="2">إعلانات السوشال ميديا</option>
+                    <option value="3">إدارة صفحات السوشال ميديا</option>
+                    <option value="4">كتابة محتوى تفاعلي جذاب</option>
+                    <option value="5">تصميم الهوية البصرية</option>
+                    <option value="6">تزويد متابعين حقيقيين</option>
+                    <option value="7">التسويق عبر الرسائل النصية</option>
+                </select>
                 {
                     selectedService === 1 ?
                         <Box key={selectedService} className="mt-10 selected-service">
@@ -180,34 +193,90 @@ function ElectronicMarketingAndSocialMedia() {
             </Box>
 
             {/* Table */}
-            <Box className="w-full min-h-screen px-5 py-5" sx={{ backgroundColor: '#D58725' }}>
-                <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center"></TableCell>
-                                <TableCell align="center">الباقة الأساسية</TableCell>
-                                <TableCell align="center">الباقة الاقتصادية</TableCell>
-                                <TableCell align="center">الباقة الاحترافية</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row) => (
-                                <TableRow
-                                    key={row.name}
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                >
-                                    <TableCell align="center" component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="center">{row.category1}</TableCell>
-                                    <TableCell align="center">{row.category2}</TableCell>
-                                    <TableCell align="center">{row.category3}</TableCell>
+            <Box className="w-full min-h-screen px-5 py-5">
+                <Box className="px-5 py-5 rounded-xl flow-root max-sm:overflow-x-scroll" sx={{ backgroundColor: '#D58725' }}>
+                    <Box className="w-full flex justify-end py-5 max-sm:hidden">
+                        <Box className="w-3/5 grid grid-cols-3 gap-x-2">
+                            <Box className="bg-white rounded-xl p-5">
+                                <Typography variant="h6" fontWeight={800} textAlign={"center"} sx={{ color: "#D58725" }}>قريبة بيسك</Typography>
+                                <Typography variant="body1" marginTop={7}>الباقة الأساسية</Typography>
+                            </Box>
+                            <Box className="bg-white rounded-xl p-5">
+                                <Typography variant="h6" fontWeight={800} textAlign={"center"} sx={{ color: "#D58725" }}>قريبة بلس</Typography>
+                                <Typography variant="body1" marginTop={7}>الباقة الاقتصادية</Typography>
+                            </Box>
+                            <Box className="bg-white rounded-xl p-5">
+                                <Typography variant="h6" fontWeight={800} textAlign={"center"} sx={{ color: "#D58725" }}>قريبة برو</Typography>
+                                <Typography variant="body1" marginTop={7}>الباقة الاحترافية</Typography>
+                            </Box>
+                        </Box>
+                    </Box>
+                    <TableContainer component={Paper} className="!w-3/5 float-left max-sm:!w-full">
+                        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell className="!hidden max-sm:!block" align="center">الخدمات</TableCell>
+                                    <TableCell align="center"><Typography variant="body1" className="hidden max-sm:block">الباقة الأساسية</Typography></TableCell>
+                                    <TableCell align="center"><Typography variant="body1" className="hidden max-sm:block">الباقة الاقتصادية</Typography></TableCell>
+                                    <TableCell align="center"><Typography variant="body1" className="hidden max-sm:block">الباقة الاحترافية</Typography></TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row) => (
+                                    <TableRow
+                                        key={row.name}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell align="center" className="!max-h-10 !hidden max-sm:!table-cell">
+                                            <Typography sx={{ height: '24px' }} className="max-sm:!h-5" variant="body2">
+                                                {row.name}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell align="center" className="!max-h-10">
+                                            <Typography sx={{ height: '24px' }} variant="body2">
+                                                {row.category1}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell align="center" className="!max-h-10">
+                                            <Typography sx={{ height: '24px' }} variant="body2">
+                                                {row.category2}
+                                            </Typography>
+                                        </TableCell>
+                                        <TableCell align="center" className="!max-h-10">
+                                            <Typography sx={{ height: '24px' }} variant="body2">
+                                                {row.category3}
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TableContainer className="!w-2/6 float-right !bg-none shadow-none max-sm:hidden" sx={{ backgroundColor: '#D58725' }}>
+                        <Table className="w-full" aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="right" className="!font-bold !text-white">قريبة للتسويق الرقمي والسوشال ميديا</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.map((row) => (
+                                    <TableRow
+                                        key={row.name}
+                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    >
+                                        <TableCell align="right" component="th" scope="row" className="!max-h-10">
+                                            <Typography sx={{ height: '24px' }} className="text-white" variant="body2">
+                                                {row.name}
+
+                                            </Typography>
+                                        </TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
             </Box>
 
             {/* FAQ */}
@@ -297,6 +366,10 @@ function ElectronicMarketingAndSocialMedia() {
                         نعم، نعمل بمرونة تامة ونطور الاستراتيجية حسب نتائج الأداء وتغيرات السوق.
                     </AccordionDetails>
                 </Accordion>
+            </Box>
+
+            <Box className="" dir="ltr" sx={{ backgroundColor: '#8D3C02' }}>
+                <Footer />
             </Box>
         </Box>
     );

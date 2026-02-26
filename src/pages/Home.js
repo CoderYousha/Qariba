@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { useNavigate } from "react-router-dom";
 import Image1 from '../images/clients/image1.jpg';
 import Image2 from '../images/clients/image2.jpg';
+import Footer from "../components/Footer";
 
 function Home() {
      const navigate = useNavigate();
@@ -16,7 +17,7 @@ function Home() {
           dots: true,
           infinite: false,
           speed: 400,
-          slidesToShow: 3,
+          // slidesToShow: 3,
           slidesToScroll: 1,
           rtl: false,
      };
@@ -49,7 +50,7 @@ function Home() {
                {/* Services */}
                <Box className="w-full h-screen px-5 py-5" sx={{ backgroundColor: '#F0D7A1' }}>
                     <Typography variant="h4" fontWeight={800} className="text-center">خدماتنا</Typography>
-                    <Slider arrows={false} {...settings} className="mt-10">
+                    <Slider slidesToShow={3} arrows={false} {...settings} className="mt-10 max-sm:!hidden">
                          <Box className="w-1/4 px-2 h-full">
                               <Box className="rounded-xl glass py-4 h-[530px] flow-root relative cursor-pointer" onClick={() => navigate('/software-development')}>
                                    <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>تطوير البرمجيات</Typography>
@@ -65,8 +66,8 @@ function Home() {
                               </Box>
                          </Box>
                          <Box className="w-1/4 px-2 h-full">
-                              <Box className="rounded-xl glass py-4 h-[530px] flow-root relative cursor-pointer">
-                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>التسويق الرقمي</Typography>
+                              <Box className="rounded-xl glass py-4 h-[530px] flow-root relative cursor-pointer" onClick={() => navigate('/electronic-marketing-social-media')}>
+                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>التسويق الرقمي والسوشال ميديا</Typography>
                                    <Typography variant="body1" className="text-center !mb-5">نحن لا نروج فقط... نحن نصنع نموا حقيقيا</Typography>
                                    <ul className="w-full px-5 text-center" dir="rtl">
                                         <li>حملات إعلانية تحقق مبيعات فعلية لا مجرد تفاعل</li>
@@ -75,10 +76,14 @@ function Home() {
                                         <li className="mt-3">تصدّر نتائج البحث وابقَ في الصدارة دائماً</li>
                                         <li className="mt-3">بناء تموضع قوي لعلامتك في السوق</li>
                                         <li className="mt-3">تحسين مستمر قائم على البيانات لرفع العائد الاستثماري</li>
+                                        <li className="mt-3">فيديوهات وتصاميم إبداعية تسرق الانتباه خلال ثوانٍ</li>
+                                        <li className="mt-3">دارة احترافية للتفاعل وبناء مجتمع حول علامتك</li>
+                                        <li className="mt-3">دعم مدفوع ذكي لزيادة الوصول والمبيعات</li>
+                                        <li className="mt-3">صياغة هوية صوتية تميزك عن المنافسين</li>
                                    </ul>
                               </Box>
                          </Box>
-                         <Box className="w-1/4 px-2">
+                         {/* <Box className="w-1/4 px-2">
                               <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
                                    <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>إدارة السوشال ميديا</Typography>
                                    <Typography variant="body1" className="text-center !mb-5">لا ننشر فق.... بنصنع تأثيرا وانتشارا</Typography>
@@ -91,7 +96,69 @@ function Home() {
                                         <li className="mt-3">تقارير وتحليل أداء مستمر لتحقيق نمو فعلي</li>
                                    </ul>
                               </Box>
+                         </Box> */}
+                         <Box className="w-1/4 px-2">
+                              <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
+                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>التصوير وصناعة المحتوى</Typography>
+                                   <Typography variant="body1" className="text-center !mb-5">لا نلتقط صورا... نصنع انطباعا لا ينسى</Typography>
+                                   <ul className="w-full px-5 text-center" dir="rtl">
+                                        <li>تصوير منتجات احترافي يعزز قرار الشراء</li>
+                                        <li className="mt-3">جلسات تصوير للعلامات التجارية والشركات بأسلوب احترافي</li>
+                                        <li className="mt-3">فيديوهات قصيرة وإبداعية مخصصة للسوشال ميديا</li>
+                                        <li className="mt-3">إنتاج إعلانات بصرية عالية الجودة</li>
+                                        <li className="mt-3">إخراج فني متكامل يعكس قوة علامتك</li>
+                                        <li className="mt-3">* مونتاج ومعالجة لونية بطابع احترافي وسينمائي</li>
+                                   </ul>
+                              </Box>
                          </Box>
+                    </Slider>
+                    <Slider slidesToShow={1} arrows={false} {...settings} className="!hidden mt-10 max-sm:!block">
+                         <Box className="w-1/4 px-2 h-full">
+                              <Box className="rounded-xl glass py-4 h-[530px] flow-root relative cursor-pointer" onClick={() => navigate('/software-development')}>
+                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>تطوير البرمجيات</Typography>
+                                   <Typography variant="body1" className="text-center !mb-5 ">حول فكرتك إلى حل رقمي قوي قابل للتوسع</Typography>
+                                   <ul className="w-full px-5 text-center" dir="rtl">
+                                        <li>تطوير مواقع وتطبيقات ويب – منصات سريعة وآمنة وقابلة للنمو</li>
+                                        <li className="mt-3">تطوير تطبيقات موبايل – iOS & Android بتجربة استخدام سلسة</li>
+                                        <li className="mt-3">حلول التجارة الإلكترونية – متجر احترافي (عادي أو متعدد البائعين) مع إدارة كاملة</li>
+                                        <li className="mt-3">أنظمة مخصصة (CRM / ERP / HR) – حلول داخلية حسب احتياج شركتك</li>
+                                        <li className="mt-3">تطوير وربط APIs – تكامل مع الدفع، الشحن، الرسائل، وأنظمة الطرف الثالث</li>
+                                        <li className="mt-3">صيانة ودعم – تحديثات وحماية وتحسينات مستمرة بعد التسليم</li>
+                                   </ul>
+                              </Box>
+                         </Box>
+                         <Box className="w-1/4 px-2 h-full">
+                              <Box className="rounded-xl glass py-4 h-[530px] flow-root relative cursor-pointer" onClick={() => navigate('/electronic-marketing-social-media')}>
+                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>التسويق الرقمي والسوشال ميديا</Typography>
+                                   <Typography variant="body1" className="text-center !mb-5">نحن لا نروج فقط... نحن نصنع نموا حقيقيا</Typography>
+                                   <ul className="w-full px-5 text-center" dir="rtl">
+                                        <li>حملات إعلانية تحقق مبيعات فعلية لا مجرد تفاعل</li>
+                                        <li className="mt-3">محتوى إبداعي يجذب، يقنع، ويحوّل الجمهور إلى عملاء</li>
+                                        <li className="mt-3">استراتيجيات نمو مدروسة مبنية على تحليل السوق والمنافسين</li>
+                                        <li className="mt-3">تصدّر نتائج البحث وابقَ في الصدارة دائماً</li>
+                                        <li className="mt-3">بناء تموضع قوي لعلامتك في السوق</li>
+                                        <li className="mt-3">تحسين مستمر قائم على البيانات لرفع العائد الاستثماري</li>
+                                        <li className="mt-3">فيديوهات وتصاميم إبداعية تسرق الانتباه خلال ثوانٍ</li>
+                                        <li className="mt-3">دارة احترافية للتفاعل وبناء مجتمع حول علامتك</li>
+                                        <li className="mt-3">دعم مدفوع ذكي لزيادة الوصول والمبيعات</li>
+                                        <li className="mt-3">صياغة هوية صوتية تميزك عن المنافسين</li>
+                                   </ul>
+                              </Box>
+                         </Box>
+                         {/* <Box className="w-1/4 px-2">
+                              <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
+                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>إدارة السوشال ميديا</Typography>
+                                   <Typography variant="body1" className="text-center !mb-5">لا ننشر فق.... بنصنع تأثيرا وانتشارا</Typography>
+                                   <ul className="w-full px-5 text-center" dir="rtl">
+                                        <li>خطة محتوى استراتيجية تجذب جمهورك المستهدف بدقة</li>
+                                        <li className="mt-3">فيديوهات وتصاميم إبداعية تسرق الانتباه خلال ثوانٍ</li>
+                                        <li className="mt-3">دارة احترافية للتفاعل وبناء مجتمع حول علامتك</li>
+                                        <li className="mt-3">دعم مدفوع ذكي لزيادة الوصول والمبيعات</li>
+                                        <li className="mt-3">صياغة هوية صوتية تميزك عن المنافسين</li>
+                                        <li className="mt-3">تقارير وتحليل أداء مستمر لتحقيق نمو فعلي</li>
+                                   </ul>
+                              </Box>
+                         </Box> */}
                          <Box className="w-1/4 px-2">
                               <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
                                    <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>التصوير وصناعة المحتوى</Typography>
@@ -188,16 +255,27 @@ function Home() {
                <Box className="w-full h-screen">
                     <Typography variant="h4" fontWeight={800} className="text-center !my-10">عملاء نعتز بهم</Typography>
                     <Box className="py-10"></Box>
-                    <Slider infinite={true} speed={400} slidesToShow={3} slidesToScroll={1} dots={false} className="w-4/5 mx-auto">
+                    <Slider infinite={true} speed={400} slidesToShow={3} slidesToScroll={1} dots={false} className="w-4/5 mx-auto max-sm:!hidden">
                          {
                               images.map((image, index) =>
                                    <Box className="w-1/4 text-center !flex justify-center">
-                                        <img key={index} src={image} className="w-36 h-36 rounded-lg"/>
+                                        <img key={index} src={image} className="w-36 h-36 rounded-lg" />
+                                   </Box>
+                              )
+                         }
+                    </Slider>
+                    <Slider infinite={true} speed={400} slidesToShow={1} slidesToScroll={1} dots={false} className="!hidden w-4/5 mx-auto max-sm:!block">
+                         {
+                              images.map((image, index) =>
+                                   <Box className="w-1/4 text-center !flex justify-center">
+                                        <img key={index} src={image} className="w-36 h-36 rounded-lg" />
                                    </Box>
                               )
                          }
                     </Slider>
                </Box>
+
+               <Footer />
           </Box>
      );
 }
