@@ -12,32 +12,33 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Logo from '../images/logo/logo.png';
 import { useNavigate } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 const pages = [
-     {
-          'name': 'الصفحة الرئيسية',
-          'link': '/home',
-     },
-     {
-          'name': 'خدماتنا',
-          'link': '/services',
-     },
-     {
-          'name': 'من نحن',
-          'link': '/about-us',
-     },
-     {
-          'name': 'نماذج الأعمال',
-          'link': '/portfolio',
-     },
-     {
-          'name': 'الإعلانات',
-          'link': '/ads',
-     },
-     {
-          'name': 'تواصل معنا',
-          'link': '/contact-us',
-     },
+  {
+    'name': 'الصفحة الرئيسية',
+    'link': '/home',
+  },
+  {
+    'name': 'خدماتنا',
+    'link': '/services',
+  },
+  {
+    'name': 'من نحن',
+    'link': '/about-us',
+  },
+  {
+    'name': 'نماذج الأعمال',
+    'link': '/portfolio',
+  },
+  {
+    'name': 'الإعلانات',
+    'link': '/banners',
+  },
+  //  {
+  //       'name': 'تواصل معنا',
+  //       'link': '/home#contact-us',
+  //  },
 ];
 
 
@@ -54,10 +55,10 @@ function Header() {
   };
 
   return (
-    <AppBar sx={{background: 'none', boxShadow: 'none'}} position="static">
+    <AppBar id="header" sx={{ background: 'none', boxShadow: 'none' }} position="static">
       <Container maxWidth="xl" className='absolute top-0' dir="rtl">
         <Toolbar disableGutters>
-          <img src={Logo} className='w-14 h-14'/>
+          <img src={Logo} className='w-14 h-14' />
           <Typography
             variant="h6"
             noWrap
@@ -105,13 +106,18 @@ function Header() {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page, index) => (
-                <MenuItem key={index} onClick={() => {navigate(page.link); handleCloseNavMenu();}}>
+                <MenuItem key={index} onClick={() => { navigate(page.link); handleCloseNavMenu(); }}>
                   <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem>
+                <HashLink to='/home#contact-us' smooth>
+                  <Typography sx={{ textAlign: 'center' }}>تواصل معنا</Typography>
+                </HashLink>
+              </MenuItem>
             </Menu>
           </Box>
-          <img src={Logo} className='w-10 h-10 hidden' />  
+          <img src={Logo} className='w-10 h-10 hidden' />
           <Typography
             variant="h5"
             noWrap
@@ -134,12 +140,21 @@ function Header() {
             {pages.map((page, index) => (
               <Button
                 key={index}
-                onClick={() => {navigate(page.link); handleCloseNavMenu();}}
+                onClick={() => { navigate(page.link); handleCloseNavMenu(); }}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 {page.name}
               </Button>
             ))}
+            {
+              <HashLink to='/home#contact-us' smooth>
+                <Button
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  تواصل معنا
+                </Button>
+              </HashLink>
+            }
           </Box>
         </Toolbar>
       </Container>

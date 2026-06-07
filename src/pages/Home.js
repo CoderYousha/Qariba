@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Box, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Button, CircularProgress, TextField, Typography } from "@mui/material";
 import Header from "../components/Header";
 import Background1 from '../images/backgrounds/background1.jpg';
 import "slick-carousel/slick/slick.css";
@@ -9,10 +9,24 @@ import { useNavigate } from "react-router-dom";
 import Image1 from '../images/clients/image1.jpg';
 import Image2 from '../images/clients/image2.jpg';
 import Footer from "../components/Footer";
+import { useEffect, useState } from "react";
+import Fetch from "../services/Fetch";
+import { useConstants } from "../hooks/UseConstants";
+import { useWaits } from "../hooks/UseWait";
+import { useSendEmail } from "../hooks/UseSendEmail";
+import { buildSendEmailFormData } from "../helper/SendEmailFormData";
+import emailjs, { send } from '@emailjs/browser';
+import SnackbarAlert from "../components/SnackBar";
+import useSnackBar from "../hooks/UseSnackBar";
 
 function Home() {
+     const { host } = useConstants();
      const navigate = useNavigate();
-
+     const [clients, setClients] = useState([]);
+     const [contacts, setContacts] = useState('');
+     const { name, setName, email, setEmail, msg, setMsg } = useSendEmail();
+     const { openSnackBar, type, message, setSnackBar, setOpenSnackBar } = useSnackBar();
+     const { getWait, setGetWait, sendWait, setSendWait } = useWaits();
      const settings = {
           dots: true,
           infinite: false,
@@ -33,6 +47,41 @@ function Home() {
           'https://qariba.net/wp-content/uploads/2025/09/18.svg',
           'https://qariba.net/wp-content/uploads/2025/09/472976722_925174923092466_7272901601190845643_n1.jpg'
      ];
+
+     const getClients = async () => {
+          let result = await Fetch(`${host}/api/clients`, 'GET');
+
+          if (result.status === 200) {
+               setClients(result.data.data.clients);
+          }
+
+          setGetWait(false);
+     }
+
+     const sendEmail = async () => {
+          setSendWait(true);
+          const formData = buildSendEmailFormData({
+               name: name,
+               email: email,
+               message: msg,
+          });
+
+          let result = await Fetch(`${host}/api/contacts/send-email`, 'POST', formData);
+
+          if (result.status === 200) {
+               setSnackBar('success', result.data.message);
+          } else if (result.status === 422) {
+               setSnackBar('error', result.data.errors[0]);
+          } else if (result.status === 400) {
+               setSnackBar('error', result.data.error);
+          }
+
+          setSendWait(false);
+     }
+
+     useEffect(() => {
+          getClients();
+     }, []);
 
      return (
           <Box>
@@ -255,27 +304,57 @@ function Home() {
                <Box className="w-full h-screen">
                     <Typography variant="h4" fontWeight={800} className="text-center !my-10">عملاء نعتز بهم</Typography>
                     <Box className="py-10"></Box>
-                    <Slider infinite={true} speed={400} slidesToShow={3} slidesToScroll={1} dots={false} className="w-4/5 mx-auto max-sm:!hidden">
-                         {
-                              images.map((image, index) =>
-                                   <Box className="w-1/4 text-center !flex justify-center">
-                                        <img key={index} src={image} className="w-36 h-36 rounded-lg" />
-                                   </Box>
-                              )
-                         }
-                    </Slider>
-                    <Slider infinite={true} speed={400} slidesToShow={1} slidesToScroll={1} dots={false} className="!hidden w-4/5 mx-auto max-sm:!block">
-                         {
-                              images.map((image, index) =>
-                                   <Box className="w-1/4 text-center !flex justify-center">
-                                        <img key={index} src={image} className="w-36 h-36 rounded-lg" />
-                                   </Box>
-                              )
-                         }
-                    </Slider>
+                    {
+                         getWait ?
+                              <Box className="w-full h-screen relative flex justify-center items-center">
+                                   <CircularProgress className="!text-yellow-500" size={70} />
+                              </Box>
+                              :
+                              <Box>
+                                   <Slider infinite={true} speed={400} slidesToShow={3} slidesToScroll={1} dots={false} className="w-4/5 mx-auto max-sm:!hidden">
+                                        {
+                                             clients.map((client, index) =>
+                                                  <Box className="w-1/4 text-center !flex justify-center">
+                                                       <img key={index} src={`${host}/${client.image}`} className="w-36 h-36 rounded-lg" />
+                                                  </Box>
+                                             )
+                                        }
+                                   </Slider>
+                                   <Slider infinite={true} speed={400} slidesToShow={1} slidesToScroll={1} dots={false} className="!hidden w-4/5 mx-auto max-sm:!block">
+                                        {
+                                             clients.map((client, index) =>
+                                                  <Box className="w-1/4 text-center !flex justify-center">
+                                                       <img key={index} src={client.image} className="w-36 h-36 rounded-lg" />
+                                                  </Box>
+                                             )
+                                        }
+                                   </Slider>
+                              </Box>
+                    }
+               </Box>
+
+               {/* Send Email */}
+               <Box className='w-1/2 mx-auto pb-5'>
+                    <Typography variant="h4" fontWeight={800} className="text-center !my-10">تواصل معنا</Typography>
+                    <TextField className="w-full" variant="outlined" label="الاسم" onChange={(e) => setName(e.target.value)} />
+                    <TextField className="w-full !mt-3" variant="outlined" label="البريد الإلكتروني" onChange={(e) => setEmail(e.target.value)} />
+                    <TextField className="w-full !mt-3" variant="outlined" multiline rows={3} label="الرسالة" onChange={(e) => setMsg(e.target.value)} />
+                    <Box className='mx-auto w-1/3 mt-10 max-sm:w-full'>
+                         <Button onClick={sendEmail} variant='outlined' className='!rounded-full w-full !border-green-500 !bg-green-500 !text-white hover:!bg-white hover:!text-green-500'>
+                              {
+                                   sendWait ?
+                                        <CircularProgress size={20} className="" color="white" />
+                                        :
+                                        'إرسال'
+                              }
+                         </Button>
+                    </Box>
                </Box>
 
                <Footer />
+
+               {/* Snackbar Alert */}
+               <SnackbarAlert open={openSnackBar} message={message} severity={type} onClose={() => setOpenSnackBar(false)} />
           </Box>
      );
 }

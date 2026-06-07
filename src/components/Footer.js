@@ -3,16 +3,49 @@ import Logo from '../images/logo/logo.png';
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+import { useConstants } from "../hooks/UseConstants";
+import Fetch from "../services/Fetch";
+import { useNavigate } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 
 function Footer() {
+    const { host } = useConstants();
+    const [contacts, setContacts] = useState('');
+    const navigate = useNavigate();
+
+    const getContacts = async () => {
+        let result = await Fetch(`${host}/api/contacts`, 'GET');
+
+        if (result.status === 200) {
+            setContacts(result.data.data.data);
+        }
+    }
+
+    useEffect(() => {
+        getContacts();
+    }, []);
+
     return (
-        <Box className="w-full h-fit bg-orange-700 rounded-tr-[50px] py-5 px-5">
+        <Box id="contact-us" className="w-full h-fit bg-orange-700 rounded-tr-[50px] py-5 px-5">
             <Box className="flex justify-between">
                 <Box className="w-1/4 flex items-center justify-between max-sm:w-2/4">
-                    <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" target="_blank"><i className="fab fa-facebook-f"></i></a>
-                    <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" target="_blank"><i className="fab fa-youtube"></i></a>
-                    <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" target="_blank"><i className="fab fa-tiktok"></i></a>
-                    <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" target="_blank"><i className="fab fa-instagram"></i></a>
+                    {
+                        contacts.facebook &&
+                        <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" href={contacts.facebook} target="_blank"><i className="fab fa-facebook-f"></i></a>
+                    }
+                    {
+                        contacts.youtube &&
+                        <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" href={contacts.youtube} target="_blank"><i className="fab fa-youtube"></i></a>
+                    }
+                    {
+                        contacts.tiktok &&
+                        <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" href={contacts.tiktok} target="_blank"><i className="fab fa-tiktok"></i></a>
+                    }
+                    {
+                        contacts.instagram &&
+                        <a className="contact-a-hover text-white text-4xl hover:text-gray-300 duration-200 cursor-pointer" href={contacts.instagram} target="_blank"><i className="fab fa-instagram"></i></a>
+                    }
                 </Box>
                 <img src={Logo} className="w-28" />
             </Box>
@@ -24,9 +57,11 @@ function Footer() {
                 <Divider className="bg-white !my-5 hidden max-sm:block" />
                 <Box className="text-center">
                     <Typography variant="body1" fontWeight={800} className="">روابط سريعة</Typography>
-                    <Typography variant="body1" className="cursor-pointer !mt-5">الصفحة الرئيسية</Typography>
-                    <Typography variant="body1" className="cursor-pointer !mt-5">من نحن</Typography>
-                    <Typography variant="body1" className="cursor-pointer !mt-5">الإعلانات</Typography>
+                    <HashLink to='/home#header' smooth>
+                        <Typography variant="body1" className="cursor-pointer !mt-5">الصفحة الرئيسية</Typography>
+                    </HashLink>
+                    <Typography onClick={() => navigate('/about-us')} variant="body1" className="cursor-pointer !mt-5">من نحن</Typography>
+                    <Typography variant="body1" onClick={() => navigate('/banners')} className="cursor-pointer !mt-5">الإعلانات</Typography>
                 </Box>
                 <Divider className="bg-white !my-5 hidden max-sm:block" />
                 <Box className="text-center">
