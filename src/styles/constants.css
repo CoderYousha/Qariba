@@ -76,6 +76,12 @@ input[type=number]::-webkit-outer-spin-button {
   animation: rotate 3s linear infinite;
 }
 
+#main-image {
+     animation-name: 'image';
+     animation-duration: 300ms;
+     animation-timing-function: ease;
+}
+
 @keyframes rotate {
   0%{
     transform: rotate(0deg);
@@ -90,5 +96,14 @@ input[type=number]::-webkit-outer-spin-button {
           opacity: 0;
      }to{
           opacity: 1;
+     }
+}
+
+@keyframes image {
+     0% {
+          opacity: 0%;
+     }
+     100%{
+          opacity: 100%;
      }
 }

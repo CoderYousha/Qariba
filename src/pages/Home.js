@@ -15,9 +15,15 @@ import { useConstants } from "../hooks/UseConstants";
 import { useWaits } from "../hooks/UseWait";
 import { useSendEmail } from "../hooks/UseSendEmail";
 import { buildSendEmailFormData } from "../helper/SendEmailFormData";
-import emailjs, { send } from '@emailjs/browser';
 import SnackbarAlert from "../components/SnackBar";
 import useSnackBar from "../hooks/UseSnackBar";
+import ProgrammingImage from '../images/services/programming.png';
+import PromotionImage from '../images/services/promotion.jpg';
+import CameraImage from '../images/services/camera.jpg';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import Diversity2OutlinedIcon from '@mui/icons-material/Diversity2Outlined';
+import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
+import DesignServicesOutlinedIcon from '@mui/icons-material/DesignServicesOutlined';
 
 function Home() {
      const { host } = useConstants();
@@ -47,6 +53,14 @@ function Home() {
           'https://qariba.net/wp-content/uploads/2025/09/18.svg',
           'https://qariba.net/wp-content/uploads/2025/09/472976722_925174923092466_7272901601190845643_n1.jpg'
      ];
+
+     const openServices = () => {
+          document.getElementById('services').style.display = 'block';
+     }
+
+     const closeServices = () => {
+          document.getElementById('services').style.display = 'none';
+     }
 
      const getClients = async () => {
           let result = await Fetch(`${host}/api/clients`, 'GET');
@@ -79,21 +93,81 @@ function Home() {
           setSendWait(false);
      }
 
+     function setNumbers() {
+          var clientNumber = 0;
+          var designNumber = 0;
+          var serviceNumber = 0;
+
+          var client = document.getElementById('client');
+          var design = document.getElementById('design');
+          var service = document.getElementById('service');
+
+          const clientInterval = setInterval(() => {
+               if (clientNumber < 220) {
+                    clientNumber++;
+                    client.innerText = '+' + clientNumber;
+               } else {
+                    clearInterval(clientInterval);
+               }
+          }, 10);
+
+          const designInterval = setInterval(() => {
+               if (designNumber < 13) {
+                    designNumber++;
+                    design.innerText = '+' + designNumber + 'K';
+               } else {
+                    clearInterval(designInterval);
+               }
+          }, 70);
+
+          const serviceInterval = setInterval(() => {
+               if (serviceNumber < 25) {
+                    serviceNumber++;
+                    service.innerText = '+' + serviceNumber;
+               } else {
+                    clearInterval(serviceNumber);
+               }
+          }, 60);
+     }
+
      useEffect(() => {
           getClients();
      }, []);
 
+     useEffect(() => {
+          if (!getWait) {
+               setNumbers();
+          }
+     }, [getWait]);
+
      return (
           <Box>
-               <Header />
+               <Header onMouseEnter={openServices} onMouseLeave={closeServices} />
                <img className="w-full h-screen absolute top-0 -z-10" src={Background1} />
                {/* Starter */}
-               <Box className="w-full h-screen pt-32">
+               <Box className="w-full h-screen pt-32" onClick={closeServices}>
                     <Typography variant="h6" className="text-white text-center">شركة قريبة للحلول البرمجية والتسويقية</Typography>
                     <Typography variant="h2" fontWeight={800} className="text-white text-center !my-5">نطور أعمالك رقميا</Typography>
                     <Typography variant="h2" fontWeight={800} className="text-white text-center">ونقربك من النجاح</Typography>
                     <Typography variant="body1" className="text-white text-center !mt-5">حلول برمجية متقدمة واستراتيجيات تسويق ذكية تحت سقف واحد، لنحول فكرتك إلى مشروع رقمي ناجح ونساعدك على التوسع بثقة في السوق</Typography>
                     <Typography variant="body1" className="text-white text-center !mt-5">ابدأ رحلتك الرقمية معنا اليوم</Typography>
+                    <Box className='grid grid-cols-3 justify-items-center mt-5 w-1/2 mx-auto'>
+                         <Box className="bg-white w-24 h-24 rounded-full flex items-center justify-center max-sm:w-12 max-sm:h-12">
+                              <Diversity2OutlinedIcon className="text-yellow-600" fontSize="large" />
+                         </Box>
+                         <Box className="bg-white w-24 h-24 rounded-full flex items-center justify-center max-sm:w-12 max-sm:h-12">
+                              <BrushOutlinedIcon className="text-yellow-600" fontSize="large" />
+                         </Box>
+                         <Box className="bg-white w-24 h-24 rounded-full flex items-center justify-center max-sm:w-12 max-sm:h-12">
+                              <DesignServicesOutlinedIcon className="text-yellow-600" fontSize="large" />
+                         </Box>
+                         <Typography variant="h6" fontWeight={800} className="text-white max-sm:!text-sm text-center">شركاء النجاح</Typography>
+                         <Typography variant="h6" fontWeight={800} className="text-white max-sm:!text-sm text-center">تصاميم وفيديوهات</Typography>
+                         <Typography variant="h6" fontWeight={800} className="text-white max-sm:!text-sm text-center">الخدمات</Typography>
+                         <Typography id='client' variant="h4" fontWeight={800} className="text-white max-sm:!text-lg">+0</Typography>
+                         <Typography id='design' variant="h4" fontWeight={800} className="text-white max-sm:!text-lg">+0</Typography>
+                         <Typography id='service' variant="h4" fontWeight={800} className="text-white max-sm:!text-lg">+0</Typography>
+                    </Box>
                </Box>
 
                {/* Services */}
@@ -132,20 +206,6 @@ function Home() {
                                    </ul>
                               </Box>
                          </Box>
-                         {/* <Box className="w-1/4 px-2">
-                              <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
-                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>إدارة السوشال ميديا</Typography>
-                                   <Typography variant="body1" className="text-center !mb-5">لا ننشر فق.... بنصنع تأثيرا وانتشارا</Typography>
-                                   <ul className="w-full px-5 text-center" dir="rtl">
-                                        <li>خطة محتوى استراتيجية تجذب جمهورك المستهدف بدقة</li>
-                                        <li className="mt-3">فيديوهات وتصاميم إبداعية تسرق الانتباه خلال ثوانٍ</li>
-                                        <li className="mt-3">دارة احترافية للتفاعل وبناء مجتمع حول علامتك</li>
-                                        <li className="mt-3">دعم مدفوع ذكي لزيادة الوصول والمبيعات</li>
-                                        <li className="mt-3">صياغة هوية صوتية تميزك عن المنافسين</li>
-                                        <li className="mt-3">تقارير وتحليل أداء مستمر لتحقيق نمو فعلي</li>
-                                   </ul>
-                              </Box>
-                         </Box> */}
                          <Box className="w-1/4 px-2">
                               <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
                                    <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>التصوير وصناعة المحتوى</Typography>
@@ -194,20 +254,6 @@ function Home() {
                                    </ul>
                               </Box>
                          </Box>
-                         {/* <Box className="w-1/4 px-2">
-                              <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
-                                   <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>إدارة السوشال ميديا</Typography>
-                                   <Typography variant="body1" className="text-center !mb-5">لا ننشر فق.... بنصنع تأثيرا وانتشارا</Typography>
-                                   <ul className="w-full px-5 text-center" dir="rtl">
-                                        <li>خطة محتوى استراتيجية تجذب جمهورك المستهدف بدقة</li>
-                                        <li className="mt-3">فيديوهات وتصاميم إبداعية تسرق الانتباه خلال ثوانٍ</li>
-                                        <li className="mt-3">دارة احترافية للتفاعل وبناء مجتمع حول علامتك</li>
-                                        <li className="mt-3">دعم مدفوع ذكي لزيادة الوصول والمبيعات</li>
-                                        <li className="mt-3">صياغة هوية صوتية تميزك عن المنافسين</li>
-                                        <li className="mt-3">تقارير وتحليل أداء مستمر لتحقيق نمو فعلي</li>
-                                   </ul>
-                              </Box>
-                         </Box> */}
                          <Box className="w-1/4 px-2">
                               <Box className="rounded-xl glass py-4 h-[530px] relative cursor-pointer">
                                    <Typography variant="h5" fontWeight={800} className="text-center !my-5" sx={{ color: '#793503' }}>التصوير وصناعة المحتوى</Typography>
@@ -350,6 +396,26 @@ function Home() {
                          </Button>
                     </Box>
                </Box>
+
+               {/* Services Popup View */}
+               <Box onMouseEnter={openServices} id='services' className='w-[500px] h-fit hidden bg-white absolute top-12 left-1/2 -translate-x-1/2 rounded-lg p-3'>
+                    <Box onClick={() => navigate('/software')} className='flex items-center cursor-pointer hover:bg-gray-100 duration-100 p-2 rounded-lg' dir="rtl">
+                         <img src={ProgrammingImage} className="w-20 h-2w-20 rounded-lg ml-3" />
+                         <Typography fontWeight={800} variant="h5">تطوير البرمجيات</Typography>
+                    </Box>
+                    <Box onClick={() => navigate('/marketing')} className='flex items-center cursor-pointer hover:bg-gray-100 duration-100 p-2 rounded-lg' dir="rtl">
+                         <img src={PromotionImage} className="w-20 h-2w-20 rounded-lg ml-3" />
+                         <Typography fontWeight={800} variant="h5">التسويق الرقمي</Typography>
+                    </Box>
+                    <Box onClick={() => navigate('/photography')} className='flex items-center cursor-pointer hover:bg-gray-100 duration-100 p-2 rounded-lg' dir="rtl">
+                         <img src={CameraImage} className="w-20 h-2w-20 rounded-lg ml-3" />
+                         <Typography fontWeight={800} variant="h5">التصوير</Typography>
+                    </Box>
+               </Box>
+
+               {/* <a href="https://wa.me"  target="_blank" className='fixed bottom-5 right-5 bg-yellow-400 w-16 h-16 rounded-full flex justify-center items-center cursor-pointer'>
+                    <WhatsAppIcon className="text-white" fontSize="large" />
+               </a> */}
 
                <Footer />
 

@@ -15,7 +15,7 @@ function App() {
           <Routes>
             {
               QaribaRoutes().map((route, index) => 
-                <Route key={index} path={route.path} element={route.element} />
+                <Route key={index} path={route.path} element={<AuthProvider>{route.element}</AuthProvider>} />
               )
             }
           </Routes>

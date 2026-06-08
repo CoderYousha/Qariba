@@ -14,13 +14,13 @@ function AuthProvider({ children, role = null }) {
                try {
                     let result = await CheckLogin(host);
                     if (!result) {
-                         navigate('/login');
+                         // navigate('/login');
                     } else {
                          if (role && result.data.account_role != role) {
                               navigate(-1);
                          }
                     }
-                    setProfile(result.data);
+                    setProfile(result.data.data);
                } catch (err) {
                     console.error(err);
                     navigate("/login");

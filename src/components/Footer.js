@@ -8,6 +8,7 @@ import { useConstants } from "../hooks/UseConstants";
 import Fetch from "../services/Fetch";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 function Footer() {
     const { host } = useConstants();
@@ -86,6 +87,13 @@ function Footer() {
                     <Typography className="!mt-5">support@qariba.net</Typography>
                 </Box>
             </Box>
+
+            {
+                contacts.whatsapp &&
+                <a href="https://wa.me" target="_blank" className='fixed bottom-5 right-5 bg-yellow-400 w-16 h-16 rounded-full flex justify-center items-center cursor-pointer'>
+                    <WhatsAppIcon className="text-white" fontSize="large" />
+                </a>
+            }
         </Box>
     );
 }
