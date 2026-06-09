@@ -11,9 +11,12 @@ import SnackbarAlert from "../../components/SnackBar";
 import useSnackBar from "../../hooks/UseSnackBar";
 import { usePopups } from "../../hooks/UsePopups";
 import AuthContext from "../../context/AuthContext";
+import QaribaCard from "../../components/QaribaCard";
+import Logo1 from '../../images/logo/logo.jpeg';
+import Logo2 from '../../images/logo/logo.png';
 
 function SubCategories() {
-    const {wait, profile} = useContext(AuthContext);
+    const { wait, profile } = useContext(AuthContext);
     const { host, language } = useConstants();
     const { getWait, setGetWait } = useWaits();
     const [subCategories, setSubCategories] = useState([]);
@@ -40,9 +43,9 @@ function SubCategories() {
     }
 
     const createRequest = (subcategory) => {
-        if(!profile){
+        if (!profile) {
             setSnackBar('error', 'يجب عليك تسجيل الدخول أولا');
-        }else{
+        } else {
             setSubCategory(subcategory);
             setPopup('request', 'flex');
         }
@@ -61,7 +64,7 @@ function SubCategories() {
     return (
         <Box>
             {
-                getWait && wait ?
+                getWait ?
                     <Box className="w-full h-screen relative flex justify-center items-center">
                         <CircularProgress className="!text-yellow-500" size={70} />
                     </Box>
@@ -76,13 +79,20 @@ function SubCategories() {
                         {/* Sub Categories */}
                         <Box className="w-full min-h-screen py-5" dir="rtl">
                             <Typography variant="h4" fontWeight={800} className="text-center">الأصناف الفرعية</Typography>
-                            <Box className='grid grid-cols-3 gap-3 p-5'>
+                            <Box className='grid grid-cols-3 gap-3 p-5 max-sm:grid-cols-1 max-sm:justify-items-center'>
                                 {
                                     subCategories.map((subCategory, index) =>
-                                        <MediaCard
-                                            title={subCategory.sub_category}
-                                            btn1='طلب الخدمة'
-                                            onClickBtn1={() => createRequest(subCategory)}
+                                        // <MediaCard
+                                        //     title={subCategory.sub_category}
+                                        //     btn1='طلب الخدمة'
+                                        //     onClickBtn1={() => createRequest(subCategory)}
+                                        // />
+                                        <QaribaCard
+                                            frontFaceTitle={subCategory.sub_category}
+                                            frontFaceImage={Logo1}
+                                            onClick={() => createRequest(subCategory)}
+                                            backFaceTitle="طلب الخدمة"
+                                            backFaceImage={Logo2}
                                         />
                                     )
                                 }

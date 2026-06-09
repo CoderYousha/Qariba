@@ -69,6 +69,7 @@ function Register() {
         if (result.status === 201) {
             localStorage.setItem('token',result.data.data.token);
             localStorage.removeItem('verify-token');
+            navigate('/home');
         }
     }
 
@@ -84,8 +85,8 @@ function Register() {
                         <CircularProgress size={70} className='!text-yellow-500' />
                     </Box>
                     :
-                    <Box>
-                        <Box className='w-2/6 mx-auto mt-20 rounded-xl shadow-lg px-5 py-5 max-sm:w-4/5'>
+                    <Box className=''>
+                        <Box className='w-2/6 mx-auto mt-20 rounded-xl shadow-lg px-5 py-5 max-sm:w-4/5 bg-white'>
                             <img src={Logo} className="rounded-full w-20 h-20 mx-auto" />
                             {
                                 !openCodeSection ?

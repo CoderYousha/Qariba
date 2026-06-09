@@ -65,8 +65,8 @@ function Profile() {
                         <CircularProgress className="!text-yellow-500" size={70} />
                     </Box>
                     :
-                    <Box sx={{ backgroundColor: theme.palette.background.default }}>
-                        <Box className="w-full pt-10 rounded-xl relative" dir={language === 'en' ? 'ltr' : "rtl"} sx={{ float: language === 'en' && 'right' }}>
+                    <Box>
+                        <Box className="w-full pt-20 rounded-xl relative" dir={language === 'en' ? 'ltr' : "rtl"} sx={{ float: language === 'en' && 'right' }}>
                             <Box className='w-3/4 mx-auto px-10 py-10 rounded-lg' sx={{ backgroundColor: theme.palette.background.paper }}>
                                 {
                                     profile.image &&

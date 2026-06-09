@@ -5,7 +5,7 @@ import { useWaits } from "../../hooks/UseWait";
 import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import Fetch from "../../services/Fetch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 function RequestService({ onClickCancel, setSnackBar, service, categoryId, subCategoryId }) {
@@ -13,6 +13,16 @@ function RequestService({ onClickCancel, setSnackBar, service, categoryId, subCa
     const { host, language } = useConstants();
     const { sendWait, setSendWait } = useWaits();
     const [description, setDescription] = useState('');
+    const [modelId, setModelId] = useState('');
+    const [models, setModels] = useState([]);
+
+    const getModels = async () => {
+        let result = await Fetch(`${host}/api/models`, 'GET');
+
+        if (result.status === 200) {
+            setModels(result.data.data.models);
+        }
+    }
 
     const addRequest = async () => {
         setSendWait(true);
@@ -40,7 +50,13 @@ function RequestService({ onClickCancel, setSnackBar, service, categoryId, subCa
 
     const resetValue = () => {
         setDescription('');
+        setModelId('');
     }
+
+    useEffect(() => {
+        if (service == 'photography')
+            getModels();
+    }, []);
 
     return (
         <Box sx={{ backgroundColor: theme.palette.background.paper }} className="shadow-lg w-3/5 h-fit rounded-3xl px-4 py-5 overflow-y-scroll none-view-scroll max-sm:w-4/5 max-sm:translate-x-0 max-sm:left-0 relative max-sm:overflow-y-scroll" dir={language === 'en' ? 'ltr' : "rtl"}>
@@ -52,6 +68,17 @@ function RequestService({ onClickCancel, setSnackBar, service, categoryId, subCa
             <Box>
                 <Box className='flex justify-between mt-16 max-sm:flex-col'>
                     <TextField variant="outlined" multiline rows={3} label='الوصف' className="w-full max-sm:w-full" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    {
+                        service == 'photography' &&
+                        <select className="border rounded-lg py-2 outline-none" value={modelId} onChange={(e) => setModelId(e.target.value)}>
+                            <option disabled value='' selected>العارضات</option>
+                            {
+                                models.map((model, index) =>
+                                    <option key={index} value={model.id}>{model.full_name}</option>
+                                )
+                            }
+                        </select>
+                    }
                 </Box>
                 <Box className='mx-auto w-1/3 mt-10 max-sm:w-full'>
                     <Button onClick={addRequest} variant='outlined' className='!rounded-full w-full !border-green-500 !bg-green-500 !text-white hover:!bg-white hover:!text-green-500'>

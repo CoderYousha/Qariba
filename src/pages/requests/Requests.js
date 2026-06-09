@@ -52,8 +52,8 @@ function Requests() {
                     </Box>
                     :
                     <Box>
-                        <img src={Background} className="w-screen h-screen fixed -z-20"/>
-                        <Box className="w-full rounded-xl relative" dir={language === 'en' ? 'ltr' : "rtl"} sx={{ float: language === 'en' && 'right' }}>
+                        <img src={Background} className="w-screen h-screen fixed -z-20 flow-root top-0"/>
+                        <Box className="w-full rounded-xl mt-10 relative" dir={language === 'en' ? 'ltr' : "rtl"} sx={{ float: language === 'en' && 'right' }}>
                             {
                                 getWait ?
                                     <Box className="w-full h-screen relative flex justify-center items-center">
@@ -62,7 +62,7 @@ function Requests() {
                                     :
                                     <Box className="rounded-xl px-2">
                                         {/* Top Section */}
-                                        <Box className="flex justify-between items-center px-2">
+                                        <Box className="flex justify-between items-center px-2 pt-10">
                                             <Typography fontWeight={800} variant="h3" className="py-2 px-3 text-white max-sm:!text-lg">الطلبات</Typography>
                                         </Box>
                                         <Box className='grid grid-cols-3 gap-y-5 mt-10 max-sm:grid-cols-1'>

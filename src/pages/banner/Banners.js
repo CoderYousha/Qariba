@@ -34,10 +34,10 @@ function Banners() {
                         <CircularProgress className="!text-yellow-500" size={70} />
                     </Box>
                     :
-                    <Box className="p-5" dir={language === 'en' ? 'ltr' : 'rtl'}>
+                    <Box className="p-10 pt-16" sx={{backgroundColor: "#F0D7A1"}} dir={language === 'en' ? 'ltr' : 'rtl'}>
                         {
                             banners.map((banner, index) =>
-                                <Box className='w-5/6 mx-auto shadow-lg bg-white mb-20 rounded-lg' onClick={() => navigate(`/banners/${banner.id}`)}>
+                                <Box className='w-5/6 mx-auto shadow-lg bg-white mb-20 rounded-lg'>
                                     <img src={host + `/${banner.image}`} className="w-full h-96 rounded-lg rounded-b-none" />
                                     <Box className="mx-5 mt-3 max-sm:flex-col">
                                         <Typography className="text-gray-400" fontWeight={800} variant="h6">{ banner.title }</Typography>

@@ -65,7 +65,7 @@ function Login() {
                     </Box>
                     :
                     <Box>
-                        <Box className='w-2/6 mx-auto mt-20 rounded-xl shadow-lg px-5 py-5 max-sm:w-4/5'>
+                        <Box className='w-2/6 mx-auto mt-20 rounded-xl shadow-lg px-5 py-5 max-sm:w-4/5 bg-white'>
                             <img src={Logo} className="rounded-full w-20 h-20 mx-auto"/>
                             <Typography variant='body2' className='!mt-7 text-gray-500'>Welcome back !!!</Typography>
                             <Typography variant='h3' className='!my-5' fontWeight={700}>Sign in</Typography>

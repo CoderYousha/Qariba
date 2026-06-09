@@ -24,15 +24,29 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Diversity2OutlinedIcon from '@mui/icons-material/Diversity2Outlined';
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined';
 import DesignServicesOutlinedIcon from '@mui/icons-material/DesignServicesOutlined';
+import QaribaCard from "../components/QaribaCard";
+import Logo from "../images/logo/logo.png";
 
 function Home() {
      const { host } = useConstants();
      const navigate = useNavigate();
      const [clients, setClients] = useState([]);
+     const [members, setMembers] = useState([]);
+     const [models, setModels] = useState([]);
      const [contacts, setContacts] = useState('');
      const { name, setName, email, setEmail, msg, setMsg } = useSendEmail();
      const { openSnackBar, type, message, setSnackBar, setOpenSnackBar } = useSnackBar();
      const { getWait, setGetWait, sendWait, setSendWait } = useWaits();
+     const [banners, setBanners] = useState([]);
+
+     const getBanners = async () => {
+          let result = await Fetch(`${host}/api/banners`, 'GET');
+
+          if (result.status === 200) {
+               setBanners(result.data.data.banners);
+          }
+     }
+
      const settings = {
           dots: true,
           infinite: false,
@@ -67,6 +81,26 @@ function Home() {
 
           if (result.status === 200) {
                setClients(result.data.data.clients);
+          }
+
+          setGetWait(false);
+     }
+
+     const getTeam = async () => {
+          let result = await Fetch(`${host}/api/team`, 'GET');
+
+          if (result.status === 200) {
+               setMembers(result.data.data.members);
+          }
+
+          setGetWait(false);
+     }
+
+     const getModels = async () => {
+          let result = await Fetch(`${host}/api/models`, 'GET');
+
+          if (result.status === 200) {
+               setModels(result.data.data.models);
           }
 
           setGetWait(false);
@@ -131,7 +165,10 @@ function Home() {
      }
 
      useEffect(() => {
+          getTeam();
           getClients();
+          getModels();
+          getBanners();
      }, []);
 
      useEffect(() => {
@@ -142,7 +179,7 @@ function Home() {
 
      return (
           <Box>
-               <Header onMouseEnter={openServices} onMouseLeave={closeServices} />
+               {/* <Header onMouseEnter={openServices} onMouseLeave={closeServices} /> */}
                <img className="w-full h-screen absolute top-0 -z-10" src={Background1} />
                {/* Starter */}
                <Box className="w-full h-screen pt-32" onClick={closeServices}>
@@ -167,6 +204,31 @@ function Home() {
                          <Typography id='client' variant="h4" fontWeight={800} className="text-white max-sm:!text-lg">+0</Typography>
                          <Typography id='design' variant="h4" fontWeight={800} className="text-white max-sm:!text-lg">+0</Typography>
                          <Typography id='service' variant="h4" fontWeight={800} className="text-white max-sm:!text-lg">+0</Typography>
+                    </Box>
+               </Box>
+
+               {/* Banner */}
+               <Box className="w-full h-fit px-5 py-5" sx={{ backgroundColor: '#F0D7A1' }}>
+                    <Typography variant="h4" fontWeight={800} className="text-center max-sm:!mt-10">الإعلانات</Typography>
+                    <Box className='mt-10'>
+                         <Slider infinite={true} speed={400} slidesToShow={1} slidesToScroll={1} dots={false} className="w-4/5 mx-auto max-sm:!hidden">
+                              {
+                                   banners.map((banner, index) =>
+                                        <Box key={index} className='!flex justify-center'>
+                                             <img src={`${host}/${banner.image}`} className="w-2/3 h-80" />
+                                        </Box>
+                                   )
+                              }
+                         </Slider>
+                         <Slider infinite={true} speed={400} slidesToShow={1} slidesToScroll={1} dots={false} className="!hidden w-4/5 mx-auto max-sm:!block">
+                              {
+                                   banners.map((banner, index) =>
+                                        <Box className='!flex justify-center'>
+                                             <img src={`${host}/${banner.image}`} className="w-2/3 h-52" />
+                                        </Box>
+                                   )
+                              }
+                         </Slider>
                     </Box>
                </Box>
 
@@ -271,8 +333,76 @@ function Home() {
                     </Slider>
                </Box>
 
+               {/* Team */}
+               <Box className="w-full h-fit px-5 py-5" sx={{ backgroundColor: '#F0D7A1' }}>
+                    <Typography variant="h4" fontWeight={800} className="text-center max-sm:!mt-10">الفريق</Typography>
+                    <Box className='mt-10'>
+                         <Slider infinite={true} speed={400} slidesToShow={3} slidesToScroll={1} dots={false} className="w-4/5 mx-auto max-sm:!hidden">
+                              {
+                                   members.map((member, index) =>
+                                        <Box className='!flex justify-center'>
+                                             <QaribaCard
+                                                  frontFaceImage={`${host}/${member.image}`}
+                                                  frontFaceTitle={member.full_name}
+                                                  backFaceImage={Logo}
+                                                  backFaceDescription={member.description}
+                                             />
+                                        </Box>
+                                   )
+                              }
+                         </Slider>
+                         <Slider infinite={true} speed={400} slidesToShow={1} slidesToScroll={1} dots={false} className="!hidden w-4/5 mx-auto max-sm:!block">
+                              {
+                                   members.map((member, index) =>
+                                        <Box className='!flex justify-center'>
+                                             <QaribaCard
+                                                  frontFaceImage={`${host}/${member.image}`}
+                                                  frontFaceTitle={member.full_name}
+                                                  backFaceImage={Logo}
+                                                  backFaceDescription={member.description}
+                                             />
+                                        </Box>
+                                   )
+                              }
+                         </Slider>
+                    </Box>
+               </Box>
+
+               {/* Models */}
+               <Box className="w-full h-fit px-5 py-5" sx={{ backgroundColor: '#F0D7A1' }}>
+                    <Typography variant="h4" fontWeight={800} className="text-center">العارضات</Typography>
+                    <Box className='mt-10'>
+                         <Slider infinite={true} speed={400} slidesToShow={3} slidesToScroll={1} dots={false} className="w-4/5 mx-auto max-sm:!hidden">
+                              {
+                                   models.map((model, index) =>
+                                        <Box className='!flex justify-center'>
+                                             <QaribaCard
+                                                  frontFaceImage={`${host}/${model.image}`}
+                                                  frontFaceTitle={model.full_name}
+                                                  backFaceImage={Logo}
+                                             />
+                                        </Box>
+                                   )
+                              }
+                         </Slider>
+                         <Slider infinite={true} speed={400} slidesToShow={1} slidesToScroll={1} dots={false} className="!hidden w-4/5 mx-auto max-sm:!block">
+                              {
+                                   models.map((model, index) =>
+                                        <Box className='!flex justify-center'>
+                                             <QaribaCard
+                                                  frontFaceImage={`${host}/${model.image}`}
+                                                  frontFaceTitle={model.full_name}
+                                                  backFaceImage={Logo}
+                                             />
+                                        </Box>
+                                   )
+                              }
+                         </Slider>
+                    </Box>
+               </Box>
+
                {/* FAQ */}
-               <Box className="w-full h-screen px-5 flow-root" sx={{ backgroundColor: '#8D3C02' }} dir="rtl">
+               <Box className="w-full h-fit px-5 flow-root" sx={{ backgroundColor: '#F0D7A1' }} dir="rtl">
                     <Typography variant="h4" fontWeight={800} className="text-center !my-10 text-white">الأسئلة الشائعة</Typography>
                     <Accordion className="mb-10">
                          <AccordionSummary
@@ -347,9 +477,9 @@ function Home() {
                </Box>
 
                {/* Our Clients */}
-               <Box className="w-full h-screen">
-                    <Typography variant="h4" fontWeight={800} className="text-center !my-10">عملاء نعتز بهم</Typography>
-                    <Box className="py-10"></Box>
+               <Box className="w-full pt-10 h-fit" sx={{ backgroundColor: "#F0D7A1" }}>
+                    <Typography variant="h4" fontWeight={800} className="text-center">عملاء نعتز بهم</Typography>
+                    <Box className="pt-10"></Box>
                     {
                          getWait ?
                               <Box className="w-full h-screen relative flex justify-center items-center">
@@ -370,7 +500,7 @@ function Home() {
                                         {
                                              clients.map((client, index) =>
                                                   <Box className="w-1/4 text-center !flex justify-center">
-                                                       <img key={index} src={client.image} className="w-36 h-36 rounded-lg" />
+                                                       <img key={index} src={`${host}/${client.image}`} className="w-36 h-36 rounded-lg" />
                                                   </Box>
                                              )
                                         }
@@ -380,25 +510,27 @@ function Home() {
                </Box>
 
                {/* Send Email */}
-               <Box className='w-1/2 mx-auto pb-5'>
-                    <Typography variant="h4" fontWeight={800} className="text-center !my-10">تواصل معنا</Typography>
-                    <TextField className="w-full" variant="outlined" label="الاسم" onChange={(e) => setName(e.target.value)} />
-                    <TextField className="w-full !mt-3" variant="outlined" label="البريد الإلكتروني" onChange={(e) => setEmail(e.target.value)} />
-                    <TextField className="w-full !mt-3" variant="outlined" multiline rows={3} label="الرسالة" onChange={(e) => setMsg(e.target.value)} />
-                    <Box className='mx-auto w-1/3 mt-10 max-sm:w-full'>
-                         <Button onClick={sendEmail} variant='outlined' className='!rounded-full w-full !border-green-500 !bg-green-500 !text-white hover:!bg-white hover:!text-green-500'>
-                              {
-                                   sendWait ?
-                                        <CircularProgress size={20} className="" color="white" />
-                                        :
-                                        'إرسال'
-                              }
-                         </Button>
+               <Box className="w-screen pt-10" sx={{ backgroundColor: "#F0D7A1" }}>
+                    <Box className='w-1/2 mx-auto pb-5' sx={{ backgroundColor: "#F0D7A1" }}>
+                         <Typography variant="h4" fontWeight={800} className="text-center">تواصل معنا</Typography>
+                         <TextField className="w-full !mt-10" variant="outlined" label="الاسم" onChange={(e) => setName(e.target.value)} />
+                         <TextField className="w-full !mt-3" variant="outlined" label="البريد الإلكتروني" onChange={(e) => setEmail(e.target.value)} />
+                         <TextField className="w-full !mt-3" variant="outlined" multiline rows={3} label="الرسالة" onChange={(e) => setMsg(e.target.value)} />
+                         <Box className='mx-auto w-1/3 mt-10 max-sm:w-full'>
+                              <Button onClick={sendEmail} variant='outlined' className='!rounded-full w-full !border-green-500 !bg-green-500 !text-white hover:!bg-white hover:!text-green-500'>
+                                   {
+                                        sendWait ?
+                                             <CircularProgress size={20} className="" color="white" />
+                                             :
+                                             'إرسال'
+                                   }
+                              </Button>
+                         </Box>
                     </Box>
                </Box>
 
                {/* Services Popup View */}
-               <Box onMouseEnter={openServices} id='services' className='w-[500px] h-fit hidden bg-white absolute top-12 left-1/2 -translate-x-1/2 rounded-lg p-3'>
+               <Box onMouseEnter={openServices} id='services' className='w-[500px] h-fit hidden bg-white absolute top-12 right-1/4 -translate-x-1/2 rounded-lg p-3'>
                     <Box onClick={() => navigate('/software')} className='flex items-center cursor-pointer hover:bg-gray-100 duration-100 p-2 rounded-lg' dir="rtl">
                          <img src={ProgrammingImage} className="w-20 h-2w-20 rounded-lg ml-3" />
                          <Typography fontWeight={800} variant="h5">تطوير البرمجيات</Typography>

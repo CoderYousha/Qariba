@@ -186,18 +186,29 @@ function Header({ onMouseEnter, onMouseLeave }) {
                   </Button>
                   :
                   <>
-                    <Button
+                    {/* <Button
                       onClick={() => navigate('/profile')}
                       sx={{ my: 2, color: 'white', display: 'block' }}
                     >
                       {profile.full_name}
-                    </Button>
+                    </Button> */}
                     <Button
                       onClick={() => logout()}
                       sx={{ my: 2, color: 'white', display: 'block' }}
                     >
                       تسجيل الخروج
                     </Button>
+                    {/* <Button
+                      onClick={() => navigate('/orders')}
+                      sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                      طلباتي
+                    </Button> */}
+                  </>
+              }
+              {
+                profile &&
+                  <>
                     <Button
                       onClick={() => navigate('/orders')}
                       sx={{ my: 2, color: 'white', display: 'block' }}
@@ -228,6 +239,18 @@ function Header({ onMouseEnter, onMouseLeave }) {
                   تواصل معنا
                 </Button>
               </HashLink>
+
+              {
+                profile &&
+                <Box className="w-12 h-12 rounded-full bg-gray-200 text-white flex justify-center items-center cursor-pointer absolute left-3 top-4 max-sm:hidden" onClick={() => navigate('/profile  ')}>
+                    {
+                      profile.image ?
+                      <img src={`${host}/${profile.image}`} className='w-full h-full rounded-full'/>
+                      :
+                      profile.full_name.charAt(0)
+                    }
+                </Box>
+              }
             </Box>
           </Toolbar>
         </Container>

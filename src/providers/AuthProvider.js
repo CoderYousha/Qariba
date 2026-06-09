@@ -23,7 +23,7 @@ function AuthProvider({ children, role = null }) {
                     setProfile(result.data.data);
                } catch (err) {
                     console.error(err);
-                    navigate("/login");
+                    // navigate("/login");
                } finally {
                     setWait(false);
                }

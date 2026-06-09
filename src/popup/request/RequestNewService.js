@@ -5,7 +5,7 @@ import { useWaits } from "../../hooks/UseWait";
 import CloseIcon from '@mui/icons-material/Close';
 import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
 import Fetch from "../../services/Fetch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useAddRequest } from "../../hooks/Request/UseAddRequest";
 import { buildAddRequestFormData } from "../../helper/Request/AddRequestFormData";
@@ -14,7 +14,16 @@ function RequestNewService({ onClickCancel, setSnackBar, service }) {
     const theme = useTheme();
     const { host, language } = useConstants();
     const { sendWait, setSendWait } = useWaits();
-    const {category, setCategory,subCategory, setSubCategory, description, setDescription} = useAddRequest();
+    const { category, setCategory, subCategory, setSubCategory, description, setDescription, modelId, setModelId } = useAddRequest();
+    const [models, setModels] = useState([]);
+
+    const getModels = async () => {
+        let result = await Fetch(`${host}/api/models`, 'GET');
+
+        if (result.status === 200) {
+            setModels(result.data.data.models);
+        }
+    }
 
     const addRequest = async () => {
         setSendWait(true);
@@ -23,7 +32,8 @@ function RequestNewService({ onClickCancel, setSnackBar, service }) {
             service: service,
             category: category,
             subCategory: subCategory,
-            description: description
+            description: description,
+            modelId: modelId
         });
 
         let result = await Fetch(`${host}/api/requests`, 'POST', formData);
@@ -45,7 +55,13 @@ function RequestNewService({ onClickCancel, setSnackBar, service }) {
         setCategory('');
         setSubCategory('');
         setDescription('');
+        setModelId('');
     }
+
+    useEffect(() => {
+        if (service == 'photography')
+            getModels();
+    }, []);
 
     return (
         <Box sx={{ backgroundColor: theme.palette.background.paper }} className="shadow-lg w-3/5 h-fit rounded-3xl px-4 py-5 overflow-y-scroll none-view-scroll max-sm:w-4/5 max-sm:translate-x-0 max-sm:left-0 relative max-sm:overflow-y-scroll" dir={language === 'en' ? 'ltr' : "rtl"}>
@@ -58,6 +74,17 @@ function RequestNewService({ onClickCancel, setSnackBar, service }) {
                 <Box className='flex flex-col justify-between mt-16 gap-y-3 max-sm:flex-col'>
                     <TextField variant="outlined" label='الصنف' className="w-full max-sm:w-full" value={category} onChange={(e) => setCategory(e.target.value)} />
                     <TextField variant="outlined" label='الصنف الفرعي' className="w-full max-sm:w-full" value={subCategory} onChange={(e) => setSubCategory(e.target.value)} />
+                    {
+                        service == 'photography' &&
+                        <select className="border rounded-lg py-2 outline-none" value={modelId} onChange={(e) => setModelId(e.target.value)}>
+                            <option disabled value='' selected>العارضات</option>
+                            {
+                                models.map((model, index) => 
+                                    <option key={index} value={ model.id }>{model.full_name}</option>
+                                )
+                            }
+                        </select>
+                    }
                     <TextField variant="outlined" multiline rows={3} label='الوصف' className="w-full max-sm:w-full" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </Box>
                 <Box className='mx-auto w-1/3 mt-10 max-sm:w-full'>

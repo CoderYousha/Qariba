@@ -12,6 +12,9 @@ import { usePopups } from "../../hooks/UsePopups";
 import InboxIcon from '@mui/icons-material/Inbox';
 import RequestNewService from "../../popup/request/RequestNewService";
 import SnackbarAlert from "../../components/SnackBar";
+import QaribaCard from "../../components/QaribaCard";
+import Logo1 from '../../images/logo/logo.jpeg';
+import Logo2 from '../../images/logo/logo.png';
 
 function Marketing() {
     const { wait, profile } = useContext(AuthContext);
@@ -62,10 +65,17 @@ function Marketing() {
                             <CircularProgress className="!text-yellow-500" size={70} />
                         </Box>
                         :
-                        <Box className='grid grid-cols-3 gap-3 p-5'>
+                        <Box className='grid grid-cols-3 gap-3 p-5 max-sm:grid-cols-1 max-sm:justify-items-center'>
                             {
                                 categories.map((category, index) =>
-                                    <MediaCard title={category.category} btn1="تفاصيل" onClickBtn1={() => navigate(`/sub-categories/${category.id}`)} />
+                                    // <MediaCard title={category.category} btn1="تفاصيل" onClickBtn1={() => navigate(`/sub-categories/${category.id}`)} />
+                                    <QaribaCard
+                                        frontFaceTitle={category.category}
+                                        frontFaceImage={Logo1}
+                                        onClick={() => navigate(`/sub-categories/${category.id}`)}
+                                        backFaceTitle="عرض الأصناف الفرعية"
+                                        backFaceImage={Logo2}
+                                    />
                                 )
                             }
                         </Box>

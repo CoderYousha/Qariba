@@ -51,8 +51,8 @@ function Aboutus() {
 
             {/* Services */}
             <Box className="w-full h-screen px-5 py-5 max-sm:h-fit" sx={{ backgroundColor: '#F0D7A1' }}>
-                <Typography variant="h4" fontWeight={800} className="text-center !pt-10">مبادئ قريبة</Typography>
-                <Box className="grid grid-cols-2 gap-x-2 gap-y-5 mt-40 max-sm:grid-cols-1 max-sm:mt-14">
+                <Typography variant="h4" fontWeight={800} className="text-center !pt-5">مبادئ قريبة</Typography>
+                <Box className="grid grid-cols-2 gap-x-2 gap-y-5 mt-20 max-sm:grid-cols-1 max-sm:mt-14">
                     <Box className="relative glass px-5 py-5 !shadow-lg !shadow-[#793503] hover:!shadow-md">
                         <Typography fontWeight={800} variant="h6" className="text-center !mt-10 black-gold-color">الابتكار المستمر</Typography>
                         <Typography variant="body1" className="!mt-10 text-center">نؤمن أن التطور الرقمي لا يتوقف، لذلك نواكب أحدث التقنيات ونطوّر حلولًا ذكية تواكب المستقبل.</Typography>

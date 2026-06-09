@@ -35,11 +35,11 @@ input[type=number]::-webkit-outer-spin-button {
      margin: 0;
 }
 
-.react-tel-input{
+.react-tel-input {
      height: 100%;
 }
 
-.glass{
+.glass {
      /* From https://css.glass */
      background: rgba(255, 255, 255, 0.28);
      border-radius: 16px;
@@ -50,30 +50,28 @@ input[type=number]::-webkit-outer-spin-button {
      transition: 0.3s ease;
 }
 
-.glass:hover{
+.glass:hover {
      background: rgba(255, 255, 255, 0.178);
      box-shadow: none;
 }
 
-.slick-slider button::before{
+.slick-slider button::before {
      color: black;
 }
 
-.selected-service{
+.selected-service {
      animation-name: 'view';
      animation-duration: 500ms;
      animation-timing-function: linear;
      animation-fill-mode: both;
 }
 
-.card-animation{
-  content: "";
-  /* override the gradient here */
-  background-image: conic-gradient(
-    white 20deg,
-    transparent 100deg
-  );
-  animation: rotate 3s linear infinite;
+.card-animation {
+     content: "";
+     /* override the gradient here */
+     background-image: conic-gradient(white 20deg,
+               transparent 100deg);
+     animation: rotate 3s linear infinite;
 }
 
 #main-image {
@@ -82,19 +80,49 @@ input[type=number]::-webkit-outer-spin-button {
      animation-timing-function: ease;
 }
 
+.reveal {
+     opacity: 0;
+     transform: translateY(40px);
+     transition: all 0.6s ease;
+}
+
+.reveal.show {
+     opacity: 1;
+     transform: translateY(0);
+}
+
+.card-inner {
+     transition: transform 0.7s !important;
+     transform-style: preserve-3d !important;
+     border: none;
+}
+
+.front-face,
+.back-face {
+     backface-visibility: hidden;
+}
+
+.back-face {
+     /* background-color: gray !important; */
+     transform: rotateY(180deg) !important;
+}
+
 @keyframes rotate {
-  0%{
-    transform: rotate(0deg);
-  }
-  100%{
-    transform: rotate(-360deg);
-  }
+     0% {
+          transform: rotate(0deg);
+     }
+
+     100% {
+          transform: rotate(-360deg);
+     }
 }
 
 @keyframes view {
-     from{
+     from {
           opacity: 0;
-     }to{
+     }
+
+     to {
           opacity: 1;
      }
 }
@@ -103,7 +131,8 @@ input[type=number]::-webkit-outer-spin-button {
      0% {
           opacity: 0%;
      }
-     100%{
+
+     100% {
           opacity: 100%;
      }
 }
